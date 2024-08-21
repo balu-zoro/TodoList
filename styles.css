@@ -67,6 +67,7 @@ h3{
   cursor: pointer;
 }
 
+
 .update{
   background-color: rgb(242, 65, 65);
   color: white;
@@ -106,4 +107,12 @@ h3{
   display: flex;
   justify-content: space-between;
   margin-bottom: 10px;
+  opacity: 0;
+  transform: scale(0.95);
+  transition: all 0.3s ease-in-out;
+}
+
+.div.visible {
+  opacity: 1;
+  transform: scale(1);
 }

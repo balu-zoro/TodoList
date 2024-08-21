@@ -45,6 +45,10 @@ function render(){
   {
     const div_ele = createTodoComponent(todos[i],i);
     document.querySelector(".todo_div").appendChild(div_ele);
+    requestAnimationFrame(() => {
+      div_ele.classList.add("visible");
+    });
+    
   }
 }
 

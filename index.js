@@ -1,12 +1,21 @@
 let todos = [];
 
-function addTodo()
-{
+function addTodo() {
+  const inputField = document.querySelector('.inp');
+
+  if (inputField.value.trim() === '') {
+    alert('Please enter a task.');
+    return;
+  }
+
   todos.push({
-    title:document.querySelector(".inp").value
+    title: inputField.value
   });
+
+  inputField.value = ''; 
   render();
 }
+
 
 function del_todo(index)
 {
@@ -27,6 +36,7 @@ function createTodoComponent(todo,index)
   update_btn.innerHTML="Update";
   delete_btn.innerHTML="Delete";
   update_btn.classList.add("update");
+  update_btn.onclick = () => editTodo(index, update_btn);
   delete_btn.classList.add("delete");
   delete_btn.setAttribute("onclick","del_todo("+ index + ")");
   btn_div.appendChild(update_btn);
@@ -37,6 +47,36 @@ function createTodoComponent(todo,index)
   div.classList.add("div");
   return div
 }
+
+
+function editTodo(index, button) {
+
+  const para = document.querySelector(".todo_div").querySelector('p');
+
+  const input = document.createElement('input');
+  input.type = 'text';
+  input.value = para.textContent;
+  para.replaceWith(input);
+  button.textContent = 'Save';
+  button.classList.add('save');
+  button.onclick = () => saveTodo(index, button);
+}
+
+function saveTodo(index, button) {
+  const input = document.querySelector(".todo_div").querySelector('input');
+
+  todos[index].title = input.value;
+
+  const para = document.createElement('p');
+  para.textContent = input.value;
+  input.replaceWith(para);
+
+  button.textContent = 'Update';
+  button.classList.remove('save');
+  button.onclick = () => editTodo(index, button);
+}
+
+
 
 
 function render(){

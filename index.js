@@ -51,19 +51,24 @@ function createTodoComponent(todo,index)
 
 function editTodo(index, button) {
 
-  const para = document.querySelector(".todo_div").querySelector('p');
+  const div = button.parentElement.parentElement;
+
+  const para = div.querySelector('p');
 
   const input = document.createElement('input');
   input.type = 'text';
   input.value = para.textContent;
   para.replaceWith(input);
+
   button.textContent = 'Save';
   button.classList.add('save');
   button.onclick = () => saveTodo(index, button);
 }
 
+
 function saveTodo(index, button) {
-  const input = document.querySelector(".todo_div").querySelector('input');
+  const div = button.parentElement.parentElement;
+  const input = div.querySelector('input');
 
   todos[index].title = input.value;
 
@@ -75,8 +80,6 @@ function saveTodo(index, button) {
   button.classList.remove('save');
   button.onclick = () => editTodo(index, button);
 }
-
-
 
 
 function render(){

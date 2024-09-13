@@ -124,3 +124,16 @@ h3{
   opacity: 1;
   transform: scale(1);
 }
+
+.fade-in {
+  animation: fadeIn 0.25s ease-in forwards;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
